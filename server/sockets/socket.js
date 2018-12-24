@@ -17,15 +17,17 @@ io.on('connection', (client) => {
     });
 
     // Escuchando cliente
-    client.on('enviarMensaje', (message, callback) => {
+    client.on('enviarMensaje', (data, callback) => {
 
-        console.log(message);
+        console.log(data);
 
-        if (!message.usuario) {
-            return callback({ ok: false, message: 'Todo MAL!!!!' });
-        }
+        client.broadcast.emit('enviarMensaje', data);
 
-        return callback({ ok: true, message: 'Todo bien!' });
+        // if (!message.usuario) {
+        //     return callback({ ok: false, message: 'Todo MAL!!!!' });
+        // }
+
+        // return callback({ ok: true, message: 'Todo bien!' });
 
     });
 
